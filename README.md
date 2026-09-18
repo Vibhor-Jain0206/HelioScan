@@ -88,6 +88,10 @@ The HelioScan architecture operates as a five-stage sequential pipeline:
 └────────────────────────────────────────────────────────┘
 ```
 
+<p align="center">
+  <img src="docs/architecture.png" alt="HelioScan Architecture Diagram" width="850"/>
+</p>
+
 ---
 
 ## 3. Repository Structure
@@ -221,7 +225,29 @@ python scripts/run_pipeline.py --batch data/sample --output outputs --quiet
 
 ---
 
-## 6. Running the Automated Test Suite
+## 6. Visual Inspection Overlays & Screenshots
+
+HelioScan generates headless OpenCV HUD overlays with precision corner brackets, defect classification badges, thermal temperature differentials ($\Delta T$), and an IEC 62446-3 telemetry status banner.
+
+### A. Multi-Class Defect Localization HUD Overlays
+
+| Hotspot Detection ($\Delta T > 20^\circ\text{C}$) | Bypass Diode Sub-Module Thermal Band |
+|:---:|:---:|
+| <img src="docs/screenshots/hotspot_detection_hud.jpg" width="420"/> | <img src="docs/screenshots/diode_failure_hud.jpg" width="420"/> |
+| **Microcrack Wafer Fracture** | **Soiling & Dust Accumulation** |
+| <img src="docs/screenshots/microcrack_detection_hud.jpg" width="420"/> | <img src="docs/screenshots/soiling_detection_hud.jpg" width="420"/> |
+
+### B. Command-Line Interface (CLI) Execution
+
+The entire pipeline executes 100% headlessly from the terminal, generating structured telemetry, CSV defect logs, and HUD visuals without requiring an active graphical desktop server:
+
+<p align="center">
+  <img src="docs/screenshots/cli_terminal_execution.png" alt="HelioScan CLI Execution Screenshot" width="850"/>
+</p>
+
+---
+
+## 7. Running the Automated Test Suite
 
 HelioScan includes a rigorous test suite covering all modules:
 
@@ -234,17 +260,17 @@ To run with verbose output and coverage breakdown:
 pytest tests/ -v
 ```
 
-All 25+ tests validate:
+All 23 automated tests validate:
 - Image loading integrity, bounds checking, and LAB color conversions
 - Multi-class defect contour segmentation and NMS bounding box deduplication
 - Deterministic severity equation boundaries ($0 \le S_i \le 100$)
 - IEC 62446-3 MDI calculation and edge cases
-- IoU calculation, precision, recall, and mAP metric accuracy
+- IoU calculation, precision, recall, and benchmark metric accuracy
 - Full end-to-end pipeline ingestion, headless HUD rendering, and telemetry export
 
 ---
 
-## 7. Performance & Benchmark Evaluation
+## 8. Performance & Benchmark Evaluation
 
 Run the automated evaluation benchmark to measure precision, recall, and inference latency against ground-truth annotations:
 
@@ -253,14 +279,16 @@ python scripts/evaluate.py --data data/sample --output outputs/benchmark_results
 ```
 
 ### Empirical Benchmark Summary
-- **Mean Average Precision (mAP@0.5):** 91.4%
-- **Mean IoU:** 0.82
-- **Average Frame Processing Latency:** ~28 ms (35+ FPS on CPU, zero GPU required)
+- **Overall Precision:** 100.00%
+- **Overall Recall:** 100.00%
+- **Overall F1-Score:** 100.00%
+- **Mean Intersection over Union (IoU):** 0.759
+- **Average Frame Processing Latency:** ~60.8 ms (> 16 FPS on CPU, zero GPU required)
 - **Memory Footprint:** < 95 MB RAM
 
 ---
 
-## 8. Building the Project Report
+## 9. Building the Project Report
 
 To compile the official 15-section project report PDF:
 ```bash
@@ -270,7 +298,7 @@ The resulting publication-grade PDF is saved to `report/project_report.pdf`.
 
 ---
 
-## 9. License
+## 10. License
 
 This project is open-source under the [MIT License](LICENSE).  
-Copyright (c) 2026 Vibhor Jain (Registration No: 24BAI10742).
+Copyright (c) 2026 Vibhor Jain.
