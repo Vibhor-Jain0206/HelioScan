@@ -135,15 +135,15 @@ Estimated power loss: $P_{\text{loss}} = (100.0 - \text{MDI}) \cdot 0.68\,\%$.
 ---
 
 ## 10. TESTING APPROACH & QUALITY ASSURANCE
-The test suite is automated via pytest, containing 23 comprehensive tests:
+The test suite is automated via pytest, containing 25 comprehensive tests:
 - `test_preprocessing.py` (7 tests): File loading, dimensions, CLAHE, bilateral filter, ROI extraction.
 - `test_detector.py` (5 tests): Clean module zero false positives, hotspot, soiling, NMS deduplication.
 - `test_severity.py` (3 tests): Mathematical severity bounds ($0 \le S_i \le 100$), weighting, tiers.
 - `test_analyzer.py` (3 tests): Clean module MDI (100.0), degradation penalties, critical failure alarms.
 - `test_metrics.py` (3 tests): Exact and partial IoU, Precision, Recall, F1 calculations.
-- `test_pipeline.py` (2 tests): End-to-end single image and batch directory execution.
+- `test_pipeline.py` (4 tests): End-to-end single image, batch execution, error handling, and custom outputs.
 
-**Test Execution Result:** `23 passed in 0.82s (100% test pass rate)`
+**Test Execution Result:** `25 passed in 0.78s (100% test pass rate)`
 
 ---
 

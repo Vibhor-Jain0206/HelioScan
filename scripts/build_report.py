@@ -296,11 +296,11 @@ def build_pdf_report(output_pdf: str = "report/project_report.pdf"):
     story.append(Paragraph("The HelioScan architecture implements four major functional modules:", body_style))
 
     frs = [
-        "<b>FR-1 (Ingestion & Preprocessing):</b> Ingests monocular BGR/thermal images, validates dimensional integrity ($\ge 32\\times 32$), enhances contrast using LAB-color space CLAHE (L-channel clip limit 2.5), applies bilateral edge-preserving smoothing, and rectifies quadrilateral module perspective via homography.",
-        "<b>FR-2 (Multi-Class Defect Detection):</b> Accurately detects and classifies five defect categories (Hotspots, Microcracks, PID, Soiling, Diode Failures) using adaptive thermal thresholding, directional morphological structuring, and Non-Maximum Suppression (NMS IoU = 0.40).",
-        "<b>FR-3 (Deterministic Severity Formulation):</b> Computes physical severity scores ($S_i \\in [0, 100]$) combining relative area fraction, calibrated temperature delta ($\Delta T$), and internal busbar electrical proximity.",
-        "<b>FR-4 (IEC 62446-3 Degradation Indexing & Health Triage):</b> Aggregates multi-defect telemetry into a global Module Degradation Index (MDI: 0–100) and issues automated maintenance dispatch recommendations (Tiers 1 to 4).",
-        "<b>FR-5 (Headless HUD Rendering & Multi-Format Telemetry Export):</b> Generates OpenCV visual overlays with high-tech corner brackets and telemetry banners headlessly, exporting structured JSON and CSV engineering records."
+        r"<b>FR-1 (Ingestion & Preprocessing):</b> Ingests monocular BGR/thermal images, validates dimensional integrity ($\ge 32\times 32$), enhances contrast using LAB-color space CLAHE (L-channel clip limit 2.5), applies bilateral edge-preserving smoothing, and rectifies quadrilateral module perspective via homography.",
+        r"<b>FR-2 (Multi-Class Defect Detection):</b> Accurately detects and classifies five defect categories (Hotspots, Microcracks, PID, Soiling, Diode Failures) using adaptive thermal thresholding, directional morphological structuring, and Non-Maximum Suppression (NMS IoU = 0.40).",
+        r"<b>FR-3 (Deterministic Severity Formulation):</b> Computes physical severity scores ($S_i \in [0, 100]$) combining relative area fraction, calibrated temperature delta ($\Delta T$), and internal busbar electrical proximity.",
+        r"<b>FR-4 (IEC 62446-3 Degradation Indexing & Health Triage):</b> Aggregates multi-defect telemetry into a global Module Degradation Index (MDI: 0–100) and issues automated maintenance dispatch recommendations (Tiers 1 to 4).",
+        r"<b>FR-5 (Headless HUD Rendering & Multi-Format Telemetry Export):</b> Generates OpenCV visual overlays with high-tech corner brackets and telemetry banners headlessly, exporting structured JSON and CSV engineering records."
     ]
     for fr in frs:
         story.append(Paragraph(f"• {fr}", bullet_style))
@@ -559,7 +559,7 @@ def build_pdf_report(output_pdf: str = "report/project_report.pdf"):
     story.append(HRFlowable(width="100%", thickness=0.8, color=colors.HexColor("#E2E8F0"), spaceAfter=8, spaceBefore=2))
     story.append(Paragraph(
         "HelioScan adheres to rigorous Test-Driven Development (TDD) principles. The complete test suite is automated via pytest, "
-        "comprising 23 unit and integration tests across 6 dedicated test modules:",
+        "comprising 25 unit and integration tests across 6 dedicated test modules:",
         body_style
     ))
     test_rows = [
@@ -568,7 +568,7 @@ def build_pdf_report(output_pdf: str = "report/project_report.pdf"):
         "<b>test_severity.py (3 tests):</b> Validates mathematical severity boundaries (0.0 to 100.0), verifies hazard weighting rank order, and tests critical tier classification.",
         "<b>test_analyzer.py (3 tests):</b> Validates pristine module MDI (=100.0), degraded module score penalties, and critical failure alarm dispatch.",
         "<b>test_metrics.py (3 tests):</b> Tests exact and zero IoU calculation, precision, recall, and F1 calculation against ground truth.",
-        "<b>test_pipeline.py (2 tests):</b> Integration test executing full ingest-to-export cycles for single images and batch directories."
+        "<b>test_pipeline.py (4 tests):</b> Integration test executing full ingest-to-export cycles for single images, batch directories, input validation error boundaries, and custom output directories."
     ]
     for tr in test_rows:
         story.append(Paragraph(f"• {tr}", bullet_style))
@@ -576,7 +576,7 @@ def build_pdf_report(output_pdf: str = "report/project_report.pdf"):
     story.append(Paragraph("<b>Test Execution Output:</b>", h2_style))
     test_box_data = [[
         Paragraph("platform win32 -- Python 3.14.0, pytest-9.1.1, pluggy-1.6.0<br/>"
-                  "<b>23 passed in 0.82s (100% test pass rate)</b>",
+                  "<b>25 passed in 0.78s (100% test pass rate)</b>",
                   ParagraphStyle("TestLog", fontName="Courier-Bold", fontSize=8.5, leading=12, textColor=colors.HexColor("#065F46")))
     ]]
     t_test = Table(test_box_data, colWidths=[480])
@@ -650,4 +650,8 @@ def build_pdf_report(output_pdf: str = "report/project_report.pdf"):
 
 
 if __name__ == "__main__":
-    build_pdf_report()
+    import argparse
+    parser = argparse.ArgumentParser(description="Build HelioScan PDF Project Report")
+    parser.add_argument("--output", "-o", default="report/project_report.pdf", help="Output PDF file path")
+    args = parser.parse_args()
+    build_pdf_report(args.output)

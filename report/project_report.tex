@@ -50,7 +50,7 @@ Photovoltaic defects such as localized thermal hotspots, wafer microcracks, open
     \item \textbf{Performance:} Process high-resolution inspection frames with an average inference latency under 70\,ms ($>14$\,FPS on standard CPU, zero GPU required).
     \item \textbf{Headless Executability:} 100\% executable from terminal environments without X11/Wayland display server dependencies.
     \item \textbf{Reliability and Resilience:} Robust input validation gracefully rejecting corrupted or low-resolution files without crashing.
-    \item \textbf{Maintainability and Modularity:} Highly decoupled architecture adhering to SOLID principles with 23+ automated unit tests.
+    \item \textbf{Maintainability and Modularity:} Highly decoupled architecture adhering to SOLID principles with 25 automated unit and integration tests.
 \end{itemize}
 
 \section{System Architecture}
@@ -96,7 +96,7 @@ Evaluation across ground-truth annotated benchmark datasets demonstrated:
 \end{itemize}
 
 \section{Testing Approach}
-The project features a comprehensive pytest suite comprising 23 automated tests verifying preprocessing, detection, severity boundaries, MDI calculations, IoU metrics, and end-to-end pipeline execution with a 100\% pass rate.
+The project features a comprehensive pytest suite comprising 25 automated tests verifying preprocessing, detection, severity boundaries, MDI calculations, IoU metrics, and end-to-end pipeline execution with a 100\% pass rate.
 
 \section{Challenges Faced}
 Key technical challenges included suppressing normal panel cell grid lines and 1-pixel busbars during microcrack detection, mitigating aluminum frame glare, and normalizing non-uniform irradiance.

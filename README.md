@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![OpenCV](https://img.shields.io/badge/OpenCV-Headless%204.x-orange.svg)](https://opencv.org/)
 [![Standards: IEC 62446--3](https://img.shields.io/badge/Standards-IEC%2062446--3-purple.svg)](https://webstore.iec.ch/publication/28559)
-[![Tests: Pytest](https://img.shields.io/badge/Tests-25%2B%20Passing-brightgreen.svg)](https://pytest.org/)
+[![Tests: Pytest](https://img.shields.io/badge/Tests-25%20Passing-brightgreen.svg)](https://pytest.org/)
 
 **HelioScan** is a modular, headless Computer Vision engineering pipeline designed for automated aerial/thermographic solar array inspection, multi-class photovoltaic defect localization, geometric defect area quantification, and standards-compliant solar health scoring.
 
@@ -141,7 +141,7 @@ HelioScan/
 │   ├── metrics.py                     # IoU, Precision, Recall, mAP benchmarks
 │   ├── visualization.py               # Headless OpenCV HUD renderer
 │   └── pipeline.py                    # Unified orchestrator
-└── tests/                             # Comprehensive automated test suite (25+ tests)
+└── tests/                             # Comprehensive automated test suite (25 tests)
     ├── __init__.py
     ├── test_preprocessing.py
     ├── test_detector.py
@@ -260,7 +260,7 @@ To run with verbose output and coverage breakdown:
 pytest tests/ -v
 ```
 
-All 23 automated tests validate:
+All 25 automated tests validate:
 - Image loading integrity, bounds checking, and LAB color conversions
 - Multi-class defect contour segmentation and NMS bounding box deduplication
 - Deterministic severity equation boundaries ($0 \le S_i \le 100$)

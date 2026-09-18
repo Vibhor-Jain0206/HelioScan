@@ -38,3 +38,27 @@ def test_batch_pipeline():
     for r in results:
         assert r.report.module_degradation_index >= 0.0
         assert r.execution_time_ms > 0
+
+
+def test_pipeline_missing_image():
+    cfg = PipelineConfig(output_dir="outputs")
+    pipeline = HelioPipeline(cfg)
+    import pytest
+    with pytest.raises(Exception):
+        pipeline.process_image("non_existent_image_file.jpg")
+
+
+def test_pipeline_custom_output_dir(tmp_path):
+    custom_dir = tmp_path / "custom_outputs"
+    cfg = PipelineConfig(
+        output_dir=str(custom_dir),
+        export_hud=True,
+        export_json=True,
+        export_csv=True
+    )
+    pipeline = HelioPipeline(cfg)
+    result = pipeline.process_image("data/sample/clean_module_01.jpg")
+    assert result.report.total_defects == 0
+    assert Path(result.json_path).exists()
+    assert str(custom_dir) in result.json_path
+
