@@ -1,0 +1,109 @@
+[
+  {
+    "image_id": "clean_module_01.jpg",
+    "width": 640,
+    "height": 512,
+    "defects": []
+  },
+  {
+    "image_id": "hotspot_01.jpg",
+    "width": 640,
+    "height": 512,
+    "defects": [
+      {
+        "category": "Hotspot",
+        "bbox": [
+          262,
+          197,
+          66,
+          66
+        ],
+        "area_pixels": 3420,
+        "temp_delta_celsius": 28.4
+      }
+    ]
+  },
+  {
+    "image_id": "hotspot_02.jpg",
+    "width": 640,
+    "height": 512,
+    "defects": [
+      {
+        "category": "Hotspot",
+        "bbox": [
+          128,
+          118,
+          64,
+          64
+        ],
+        "area_pixels": 3216,
+        "temp_delta_celsius": 24.2
+      },
+      {
+        "category": "Hotspot",
+        "bbox": [
+          406,
+          286,
+          68,
+          68
+        ],
+        "area_pixels": 3631,
+        "temp_delta_celsius": 24.2
+      }
+    ]
+  },
+  {
+    "image_id": "microcrack_01.jpg",
+    "width": 640,
+    "height": 512,
+    "defects": [
+      {
+        "category": "Microcrack",
+        "bbox": [
+          205,
+          175,
+          110,
+          140
+        ],
+        "area_pixels": 2840,
+        "temp_delta_celsius": 4.5
+      }
+    ]
+  },
+  {
+    "image_id": "soiling_01.jpg",
+    "width": 640,
+    "height": 512,
+    "defects": [
+      {
+        "category": "Soiling",
+        "bbox": [
+          315,
+          190,
+          110,
+          90
+        ],
+        "area_pixels": 7200,
+        "temp_delta_celsius": 6.0
+      }
+    ]
+  },
+  {
+    "image_id": "diode_failure_01.jpg",
+    "width": 640,
+    "height": 512,
+    "defects": [
+      {
+        "category": "Diode_Failure",
+        "bbox": [
+          205,
+          14,
+          190,
+          484
+        ],
+        "area_pixels": 91960,
+        "temp_delta_celsius": 38.5
+      }
+    ]
+  }
+]
